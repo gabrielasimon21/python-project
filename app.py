@@ -1,7 +1,9 @@
 import streamlit as st
-from src.plots import rating_category_plot, rating_category_plot_test
+from src.plots import rating_category_plot, ratings_city_plot
 from src.data_utils import df
 from src.recommender import recommend_similar_cities
+import pandas as pd
+import plotly.express as px 
 
 from src.descriptions import variable_descriptions, rating_columns, regions 
 
@@ -35,6 +37,10 @@ elif st.session_state.page == "Recommender":
         st.write(f"### If you liked _{city_choice}_, _{city_choice_country}_ you might also like:")
         recs = recommend_similar_cities(df, city_choice)
         st.dataframe(recs)
+        st.subheader(f"City Ratings Overview for {city_choice}")
+        rating_columns_lower = [col.lower() for col in rating_columns]
+        fig = ratings_city_plot(df, rating_columns_lower, city_choice)
+        st.plotly_chart(fig, use_container_width=True)
 
 elif st.session_state.page == "Destination":
     st.title("🗺️ Find your ideal destination!")

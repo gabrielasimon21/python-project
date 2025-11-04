@@ -2,7 +2,6 @@ rating_columns = ["Culture", "Adventure", "Nature", "Beaches", "Nightlife", "Cui
 
 regions = ["World", "Europe", "Asia", "Africa", "North America", "South America", "Oceania"]
 
-
 variable_descriptions = {
     "culture": "Represents how rich and accessible the cultural experiences are in a city.",
     "adventure": "Measures opportunities for adventure sports and outdoor activities.",

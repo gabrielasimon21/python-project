@@ -1,12 +1,8 @@
 import pycountry
 import plotly.express as px
-from src.data_utils import load_data
+from src.data_utils import df
 from src.descriptions import rating_columns
 import numpy as np
-
-csv = "data/worldwide-travel-cities.csv"
-
-df = load_data(csv)
 
 def get_iso(country):
     try:
