@@ -6,6 +6,9 @@ import pycountry
 from src.plots import rating_category_plot, rating_category_plot_test
 from src.data_utils import load_data
 
+from src.descriptions import variable_descriptions
+
+
 st.set_page_config(page_title="Where to Next?", layout="centered", initial_sidebar_state="expanded")
 
 csv = "data/worldwide-travel-cities.csv"
@@ -47,10 +50,11 @@ elif st.session_state.page == "Plots":
 
     category = st.selectbox("Select a category", rating_columns)
     category = category.lower()
+    st.write(variable_descriptions[category])
     region_selection = st.selectbox("Select a region", regions)
     region_selection = region_selection.lower()
     
-    st.write("**Filter by rating:**")
+    st.write("#### **Filter by rating:**")
     cols = st.columns(5)  
 
     selected_ranks = []
