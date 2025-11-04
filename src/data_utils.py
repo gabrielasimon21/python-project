@@ -6,3 +6,6 @@ def load_data(csv):
     df = pd.read_csv(csv)
     df.columns = df.columns.str.lower().str.strip()
     return df
+
+csv = "data/worldwide-travel-cities.csv"
+df = load_data(csv)
