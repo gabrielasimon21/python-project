@@ -1,19 +1,12 @@
 import streamlit as st
-import pandas as pd
-import plotly.express as px
-import numpy as np
-import pycountry
 from src.plots import rating_category_plot, rating_category_plot_test
-from src.data_utils import load_data
+from src.data_utils import df
+from src.recommender import recommend_similar_cities
 
-from src.descriptions import variable_descriptions
+from src.descriptions import variable_descriptions, rating_columns, regions 
 
 
 st.set_page_config(page_title="Where to Next?", layout="centered", initial_sidebar_state="expanded")
-
-csv = "data/worldwide-travel-cities.csv"
-
-df = load_data(csv)
 
 if "page" not in st.session_state:
     st.session_state.page = "Home"
@@ -22,12 +15,26 @@ if st.sidebar.button("Home"):
     st.session_state.page = "Home"
 if st.sidebar.button("Find your ideal destination"):
     st.session_state.page = "Destination"
-if st.sidebar.button("Plots"):
+if st.sidebar.button("Explore Cities by Ratings"):
     st.session_state.page = "Plots"
+if st.sidebar.button("City Recommender"):
+    st.session_state.page = "Recommender"
 
 if st.session_state.page == "Home":
     st.title("Home Page 🏠")
     st.write("Welcome to the home page!")
+ 
+elif st.session_state.page == "Recommender":
+    st.title("📍 City Recommender")
+    st.write("Choose a city you liked, and we'll suggest similar cities you might enjoy!")
+    city_choice = st.selectbox("Choose a city you liked", sorted(df["city"].unique()))
+    city_choice_country = df[df["city"] == city_choice]["country"].values[0]
+    #category = st.selectbox("Choose a category", rating_columns)
+    #category = category.lower()
+    if city_choice:
+        st.write(f"### If you liked _{city_choice}_, _{city_choice_country}_ you might also like:")
+        recs = recommend_similar_cities(df, city_choice)
+        st.dataframe(recs)
 
 elif st.session_state.page == "Destination":
     st.title("🗺️ Find your ideal destination!")
@@ -40,12 +47,9 @@ elif st.session_state.page == "Destination":
     
     
 elif st.session_state.page == "Plots":
-    st.title("🌍 Where to Next?")
+    st.title("🌟 Explore Cities by Ratings")
     st.markdown("Explore cities around the world and find your next travel destination!")
 
-
-    rating_columns = ["Culture", "Adventure", "Nature", "Beaches", "Nightlife", "Cuisine", "Wellness", "Urban", "Seclusion"]
-    regions = ["World", "Europe", "Asia", "Africa", "North America", "South America", "Oceania"]
     values = [1, 2, 3, 4, 5]
 
     category = st.selectbox("Select a category", rating_columns)
