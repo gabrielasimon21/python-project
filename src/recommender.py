@@ -1,7 +1,7 @@
 import pycountry
 import plotly.express as px
 from src.data_utils import df
-from src.descriptions import rating_columns
+from src.variables import RATING_COLUMNS
 import numpy as np
 
 def get_iso(country):
@@ -13,7 +13,7 @@ def get_iso(country):
 def recommend_similar_cities(df, city_choice):
     # Compute similarity: find cities with similar ratings
     data = df.copy()
-    rating_columns_lower = [col.lower() for col in rating_columns]
+    rating_columns_lower = [col.lower() for col in RATING_COLUMNS]
     city_vector = data[data["city"] == city_choice][rating_columns_lower].iloc[0]
     # Compute Manhattan distance (sum of absolute differences)
     data["distance"] = data[rating_columns_lower].apply(lambda row: np.abs(row - city_vector).sum(), axis=1)

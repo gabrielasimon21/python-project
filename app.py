@@ -5,7 +5,8 @@ from src.recommender import recommend_similar_cities
 import pandas as pd
 import plotly.express as px 
 
-from src.descriptions import variable_descriptions, rating_columns, regions 
+from src.variables import VARIABLE_DESCRIPTIONS, RATING_COLUMNS, REGIONS 
+from src.quiz import QUESTIONS, compute_result
 
 
 st.set_page_config(page_title="Where to Next?", layout="centered", initial_sidebar_state="expanded")
@@ -34,11 +35,11 @@ elif st.session_state.page == "Recommender":
     #category = st.selectbox("Choose a category", rating_columns)
     #category = category.lower()
     if city_choice:
-        st.write(f"### If you liked _{city_choice}_, _{city_choice_country}_ you might also like:")
+        st.write(f"### If you liked _{city_choice}, {city_choice_country}_ you might also like:")
         recs = recommend_similar_cities(df, city_choice)
         st.dataframe(recs)
-        st.subheader(f"City Ratings Overview for {city_choice}")
-        rating_columns_lower = [col.lower() for col in rating_columns]
+        st.write(f"### City Ratings Overview for _{city_choice}, {city_choice_country}_")
+        rating_columns_lower = [col.lower() for col in RATING_COLUMNS]
         fig = ratings_city_plot(df, rating_columns_lower, city_choice)
         st.plotly_chart(fig, use_container_width=True)
 
@@ -46,22 +47,41 @@ elif st.session_state.page == "Destination":
     st.title("🗺️ Find your ideal destination!")
     st.write("Take this quick quiz and discover where should you should go for your next vacation!")
     st.markdown("----")
-    st.write("Reply to the questions with your preferences.")   
-    budget = st.radio('Question 1', ('Budget', 'Luxury', 'Idk'))
-    longness = st.radio('Question 2', ('quick', 'long', 'etc'))
-    st.write("This is the budget: ", budget)
-    
-    
+    st.write("Reply to the questions with your preferences.")
+    answers = {}
+    for key, question in QUESTIONS.items():
+        st.markdown(f"### {question['text']}")
+        options = question["options"]
+        answer = st.radio(
+            f"### Select an option",
+            options,
+            index=None,  
+            key=key
+        )
+        answers[key] = question["mapping"].get(answer, None)
+        st.markdown("---")
+    if st.button("Get Recommendations"):
+        if any(answer is None for answer in answers.values()):
+            st.error("⚠️ Please answer all questions before continuing.")
+        else:
+            st.write(answers)
+            st.write("### Based on your answers, we recommend you the following cities:")
+            computed_results = compute_result(answers)
+            if computed_results.empty:
+                st.write("😔 Unfortunately, no cities match your preferences. Please try adjusting your answers.")
+            else:
+                st.dataframe(computed_results.reset_index(drop=True))
+
 elif st.session_state.page == "Plots":
     st.title("🌟 Explore Cities by Ratings")
     st.markdown("Explore cities around the world and find your next travel destination!")
 
     values = [1, 2, 3, 4, 5]
 
-    category = st.selectbox("Select a category", rating_columns)
+    category = st.selectbox("Select a category", RATING_COLUMNS)
     category = category.lower()
-    st.write(variable_descriptions[category])
-    region_selection = st.selectbox("Select a region", regions)
+    st.write(VARIABLE_DESCRIPTIONS[category])
+    region_selection = st.selectbox("Select a region", REGIONS)
     region_selection = region_selection.lower()
     
     st.write("#### **Filter by rating:**")
