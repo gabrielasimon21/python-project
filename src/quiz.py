@@ -2,6 +2,7 @@ from src.data_utils import df
 import json
 import pandas as pd
 from src.variables import RATING_COLUMNS
+import numpy as np
 
 QUESTIONS = {
     "region": {
@@ -180,41 +181,46 @@ def get_avg_temp_month(row, month):
     temp_dict = json.loads(row["avg_temp_monthly"])
     return temp_dict[str(month)]["avg"]
 
-def filter_by_preferences(results_df, preferences):
-    results_df_preferences = results_df.copy()
-    for level in range(5, 0, -1):
-        cats = [cat for cat, imp in preferences.items() if imp == level]
-
-        for cat in cats:
-            results_df_preferences = results_df_preferences[results_df_preferences[cat] >= level]
-
-        if not results_df_preferences.empty:
-            break
-
-    return results_df_preferences
-
 def compute_result(answers):
-    # filter dataframe if a region is selected
     
     if answers["region"] != 0: 
         results_df = df[df["region"] == answers["region"]]
     else:
         results_df = df.copy()
-    # filter dataframe based on ideal duration
+
     results_df = results_df[results_df["ideal_durations"].apply(lambda x: answers["ideal_durations"] in x)]
-    # filter dataframe based on budget level
+
     if answers["budget_level"] == "Budget":
         results_df = results_df[results_df["budget_level"] == "Budget"]
     elif answers["budget_level"] == "Mid-range":
         results_df = results_df[results_df["budget_level"].isin(["Budget", "Mid-range"])]
-    # compute average temperature for the selected month
+    elif answers["budget_level"] == "Luxury":
+        results_df = results_df[results_df["budget_level"].isin(["Mid-range", "Luxury"])]
+
     month = answers["month"]  
-    #results_df["avg_temp"] = results_df.apply(lambda r: get_avg_temp_month(r, month), axis=1)
-    # divide temperature range in 5 equal bins
-    #results_df["temp_category"] = pd.cut(results_df["avg_temp"], bins=5, labels=[1, 2, 3, 4, 5])
-    #preferred_weather = answers["avg_temp_monthly"]  # 1–5
-    #results_df = results_df[results_df["temp_category"] == preferred_weather]\
+    results_df["avg_temp"] = results_df.apply(lambda r: get_avg_temp_month(r, month), axis=1)
+
+    results_df["temp_category"] = pd.cut(results_df["avg_temp"], bins=5, labels=[1, 2, 3, 4, 5])
+    preferred_weather = answers["avg_temp_monthly"]  # 1–5
+    results_df = results_df[results_df["temp_category"] == preferred_weather]
+
+
+    rating_cols = [col.lower() for col in RATING_COLUMNS]
+    user_vector = np.array([answers[col] for col in rating_cols], dtype=float)
+
+    weights = user_vector**2 / (user_vector**2).sum() 
     
-    rating_columns_lower = [col.lower() for col in RATING_COLUMNS]
-    results_df = filter_by_preferences(results_df, {k: v for k, v in answers.items() if k in rating_columns_lower})
-    return results_df
+    def compute_weighted_similarity(row):
+        city_vector = row[rating_cols].astype(float).values
+        weighted_city = city_vector * weights
+        weighted_user = user_vector * weights
+        return np.dot(weighted_city, weighted_user) / (
+            np.linalg.norm(weighted_city) * np.linalg.norm(weighted_user))
+
+    results_df["similarity"] = results_df.apply(compute_weighted_similarity, axis=1)
+    results_df["similarity"] = results_df["similarity"] * 100  # scale to 0–100%
+    results_df["similarity"] = results_df["similarity"].round(2).map("{:.1f}%".format)
+
+    top_cities = results_df.sort_values(by="similarity", ascending=False).head(5)
+    
+    return top_cities

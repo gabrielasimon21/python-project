@@ -2,10 +2,7 @@ import streamlit as st
 from src.plots import rating_category_plot, ratings_city_plot
 from src.data_utils import df
 from src.recommender import recommend_similar_cities
-import pandas as pd
-import plotly.express as px 
-
-from src.variables import VARIABLE_DESCRIPTIONS, RATING_COLUMNS, REGIONS 
+from src.variables import VARIABLE_DESCRIPTIONS, RATING_COLUMNS, REGIONS, MONTHS
 from src.quiz import QUESTIONS, compute_result
 
 
@@ -16,24 +13,26 @@ if "page" not in st.session_state:
     
 if st.sidebar.button("Home"):
     st.session_state.page = "Home"
-if st.sidebar.button("Find your ideal destination"):
-    st.session_state.page = "Destination"
 if st.sidebar.button("Explore Cities by Ratings"):
     st.session_state.page = "Plots"
 if st.sidebar.button("City Recommender"):
     st.session_state.page = "Recommender"
+if st.sidebar.button("Find your ideal destination"):
+    st.session_state.page = "Destination"
 
 if st.session_state.page == "Home":
-    st.title("Home Page 🏠")
-    st.write("Welcome to the home page!")
+    st.title("Where to Next? 🌍")
+    st.write("This project aims to help travelers discover their next ideal travel destination based on their preferences and interests. ")
+    st.write("Whether you're looking for vibrant city life, serene nature spots, or cultural experiences, we've got you covered!")
+    st.markdown("---")
+    
+    
  
 elif st.session_state.page == "Recommender":
     st.title("📍 City Recommender")
     st.write("Choose a city you liked, and we'll suggest similar cities you might enjoy!")
     city_choice = st.selectbox("Choose a city you liked", sorted(df["city"].unique()))
     city_choice_country = df[df["city"] == city_choice]["country"].values[0]
-    #category = st.selectbox("Choose a category", rating_columns)
-    #category = category.lower()
     if city_choice:
         st.write(f"### If you liked _{city_choice}, {city_choice_country}_ you might also like:")
         recs = recommend_similar_cities(df, city_choice)
@@ -64,13 +63,21 @@ elif st.session_state.page == "Destination":
         if any(answer is None for answer in answers.values()):
             st.error("⚠️ Please answer all questions before continuing.")
         else:
-            st.write(answers)
+            #st.write(answers)
             st.write("### Based on your answers, we recommend you the following cities:")
             computed_results = compute_result(answers)
             if computed_results.empty:
                 st.write("😔 Unfortunately, no cities match your preferences. Please try adjusting your answers.")
             else:
-                st.dataframe(computed_results.reset_index(drop=True))
+                for i, row in computed_results.head(5).iterrows():
+                    st.write(f"**{row['city']}, {row['country']}**")
+                    st.write(f"{row['short_description']}")
+                    st.write(f"   - Similarity Score: {row['similarity']}")
+                    month = answers['month'] - 1
+                    st.write(f"   - Average temperature in {MONTHS[month]}: {row['avg_temp']:.1f}°C")
+                    st.markdown("---")
+                #st.dataframe(computed_results.reset_index(drop=True))
+                
 
 elif st.session_state.page == "Plots":
     st.title("🌟 Explore Cities by Ratings")

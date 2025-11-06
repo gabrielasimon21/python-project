@@ -1,14 +1,11 @@
-import pycountry
 import plotly.express as px
 from src.data_utils import df
 from src.variables import RATING_COLUMNS
 import numpy as np
 
-def get_iso(country):
-    try:
-        return pycountry.countries.lookup(country).alpha_3
-    except:
-        return None
+
+#MAYBE CHANGE THE DISTANCE METRIC TO THE ONE USED IN THE QUIZ (EUCLIDEAN)
+
 
 def recommend_similar_cities(df, city_choice):
     # Compute similarity: find cities with similar ratings

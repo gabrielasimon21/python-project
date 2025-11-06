@@ -13,3 +13,6 @@ VARIABLE_DESCRIPTIONS = {
     "urban": "Rates modernity, infrastructure, and urban experiences.",
     "seclusion": "Reflects how peaceful, remote, and less touristy the city is."
 }
+
+MONTHS = ["January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"]
