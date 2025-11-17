@@ -187,8 +187,10 @@ def compute_result(answers):
         results_df = df[df["region"] == answers["region"]]
     else:
         results_df = df.copy()
+    print(results_df.head())
 
     results_df = results_df[results_df["ideal_durations"].apply(lambda x: answers["ideal_durations"] in x)]
+    print(results_df.head())
 
     if answers["budget_level"] == "Budget":
         results_df = results_df[results_df["budget_level"] == "Budget"]
@@ -196,14 +198,39 @@ def compute_result(answers):
         results_df = results_df[results_df["budget_level"].isin(["Budget", "Mid-range"])]
     elif answers["budget_level"] == "Luxury":
         results_df = results_df[results_df["budget_level"].isin(["Mid-range", "Luxury"])]
+    print(results_df.head())
 
-    month = answers["month"]  
-    results_df["avg_temp"] = results_df.apply(lambda r: get_avg_temp_month(r, month), axis=1)
+    month = answers["month"]
+    results_df["avg_temp"] = results_df.apply(
+        lambda r: get_avg_temp_month(r, month), axis=1
+    )
 
-    results_df["temp_category"] = pd.cut(results_df["avg_temp"], bins=5, labels=[1, 2, 3, 4, 5])
-    preferred_weather = answers["avg_temp_monthly"]  # 1–5
-    results_df = results_df[results_df["temp_category"] == preferred_weather]
+    num_bins = min(5, len(results_df))
 
+    results_df["temp_category"] = pd.qcut(
+        results_df["avg_temp"],
+        q=num_bins,
+        labels=list(range(1, num_bins + 1))
+    )
+
+    preferred_weather = answers["avg_temp_monthly"]  
+
+    preferred_weather = max(1, min(preferred_weather, num_bins))
+
+    temp_df = results_df[results_df["temp_category"].astype(int) == preferred_weather]
+
+    if temp_df.empty:
+        for shift in [1, -1, 2, -2]:
+            candidate = preferred_weather + shift
+            if 1 <= candidate <= num_bins:
+                temp_df = results_df[results_df["temp_category"].astype(int) == candidate]
+                if not temp_df.empty:
+                    break
+
+    if temp_df.empty:
+        temp_df = results_df.copy()
+
+    results_df = temp_df.copy()
 
     rating_cols = [col.lower() for col in RATING_COLUMNS]
     user_vector = np.array([answers[col] for col in rating_cols], dtype=float)

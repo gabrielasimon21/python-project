@@ -1,5 +1,5 @@
 import plotly.express as px
-import pycountry
+#import pycountry
 import pandas as pd
 
 def rating_category_plot(df, category, region_selection):
