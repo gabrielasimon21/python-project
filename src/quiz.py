@@ -4,250 +4,90 @@ import pandas as pd
 from src.variables import RATING_COLUMNS
 import numpy as np
 
-QUESTIONS = {
-    "region": {
-        "text": "🌏 To which region of the world would you like to travel?",
-        "type": "select",
-        "options": ["Africa", "Asia", "Europe",
-                    "Middle East", "North America", 
-                    "Oceania", "South America", "No specific region"],
-        "mapping": {
-            "Europe": "europe",
-            "Asia": "asia",
-            "Africa": "africa",     
-            "North America": "north_america",   
-            "South America": "south_america",
-            "Oceania": "oceania",
-            "Middle East": "middle_east",
-            "No specific region": 0
-        }
-    },
-    "ideal_durations": {
-        "text": "🧳 How long do you plan to travel?",
-        "type": "select",
-        "options": ["For a Weekend", "For 4-5 days", "For 1 week to 10 days", "More than 2 weeks"],
-        "mapping": {
-            "For a Weekend": "Weekend",
-            "For 4-5 days": "Short trip",
-            "For 1 week to 10 days": "One week",
-            "More than 2 weeks": "Long trip"
-        }
-    },
-    "budget_level": {
-        "text": "💰 What is your approximate budget for the trip?",
-        "type": "select",
-        "options": ["Low", "Medium", "High"],
-        "mapping": {"Low": "Budget", "Medium": "Mid-range", "High": "Luxury"}
-    },
-    "month": {
-        "text": "📅 In which month would you like to travel?",
-        "type": "select",
-        "options": [
-            "January", "February", "March", "April", "May", "June",
-            "July", "August", "September", "October", "November", "December"
-        ],
-        "mapping": {
-            "January": 1,
-            "February": 2,
-            "March": 3,
-            "April": 4,
-            "May": 5,
-            "June": 6,
-            "July": 7,
-            "August": 8,
-            "September": 9,
-            "October": 10,
-            "November": 11,
-            "December": 12
-        }
-    },
-    "avg_temp_monthly": {
-        "text": "🌤️ What's your ideal weather?",
-        "type": "select",
-        "options": ["Very cold", "Cold", "Mild", "Warm", "Hot"],
-        "mapping": {"Very cold": 0, "Cold": 1, "Mild": 2, "Warm": 3, "Hot": 4}
-    },
-    "culture": {
-        "text": "🏰 How important is experiencing local culture when you travel?",
-        "type": "select",
-        "options": ["Very important", "Important", "Somewhat important", "Slightly important", "Not important"],
-        "mapping": {
-            "Not important": 1,
-            "Slightly important": 2,
-            "Somewhat important": 3,
-            "Important": 4,
-            "Very important": 5 
-        }
-    },
-    "adventure": {
-        "text": "🧗‍♂️ How important are adventure activities when you travel?",
-        "type": "select",
-        "options": ["Very important", "Important", "Somewhat important", "Slightly important", "Not important"],
-        "mapping": {
-            "Not important": 1,
-            "Slightly important": 2,
-            "Somewhat important": 3,
-            "Important": 4,
-            "Very important": 5 
-        }
-    },
-    "nature": {
-        "text": "🌳 How important is the presence of nature landscapes in your trip?",
-        "type": "select",
-        "options": ["Very important", "Important", "Somewhat important", "Slightly important", "Not important"],
-        "mapping": {
-            "Not important": 1,
-            "Slightly important": 2,
-            "Somewhat important": 3,
-            "Important": 4,
-            "Very important": 5 
-        }
-    },
-    "beaches": {
-        "text": "🏖️ How important is having access to beaches on your trip?",
-        "type": "select",
-        "options": ["Very important", "Important", "Somewhat important", "Slightly important", "Not important"],
-        "mapping": {
-            "Not important": 1,
-            "Slightly important": 2,
-            "Somewhat important": 3,
-            "Important": 4,
-            "Very important": 5 
-        }
-    },
-    "nightlife": {
-        "text": "🍸 How important is experiencing nightlife on your trip?",
-        "type": "select",
-        "options": ["Very important", "Important", "Somewhat important", "Slightly important", "Not important"],
-        "mapping": {
-            "Not important": 1,
-            "Slightly important": 2,
-            "Somewhat important": 3,
-            "Important": 4,
-            "Very important": 5 
-        }
-    },
-    "cuisine": {
-        "text": "🥗 How important is trying local cuisine when you travel?",
-        "type": "select",
-        "options": ["Very important", "Important", "Somewhat important", "Slightly important", "Not important"],
-        "mapping": {
-            "Not important": 1,
-            "Slightly important": 2,
-            "Somewhat important": 3,
-            "Important": 4,
-            "Very important": 5 
-        }
-    },
-    "wellness": {
-        "text": "🧘‍♀️ How important are wellness and relaxation opportunities on your trip?",
-        "type": "select",
-        "options": ["Very important", "Important", "Somewhat important", "Slightly important", "Not important"],
-        "mapping": {
-            "Not important": 1,
-            "Slightly important": 2,
-            "Somewhat important": 3,
-            "Important": 4,
-            "Very important": 5 
-        }
-    },
-    "urban": {
-        "text": "🏙️ How important is it for your destination to be a modern, urban city?",
-        "type": "select",
-        "options": ["Very important", "Important", "Somewhat important", "Slightly important", "Not important"],
-        "mapping": {
-            "Not important": 1,
-            "Slightly important": 2,
-            "Somewhat important": 3,
-            "Important": 4,
-            "Very important": 5 
-        }
-    },
-    "seclusion": {
-        "text": "🎋 How important is it for your destination to be a secluded, peaceful area?",
-        "type": "select",
-        "options": ["Very important", "Important", "Somewhat important", "Slightly important", "Not important"],
-        "mapping": {
-            "Not important": 1,
-            "Slightly important": 2,
-            "Somewhat important": 3,
-            "Important": 4,
-            "Very important": 5 
-        }
-    },
-}
+# TODO: comment code 
 
 def get_avg_temp_month(row, month):
-    temp_dict = json.loads(row["avg_temp_monthly"])
-    return temp_dict[str(month)]["avg"]
+    try:
+        temp_dict = json.loads(row["avg_temp_monthly"])
+        return temp_dict[str(month)]["avg"]
+    except:
+        return 20 
 
 def compute_result(answers):
-    
     if answers["region"] != 0: 
-        results_df = df[df["region"] == answers["region"]]
+        results_df = df[df["region"] == answers["region"]].copy()
     else:
         results_df = df.copy()
-    print(results_df.head())
 
-    results_df = results_df[results_df["ideal_durations"].apply(lambda x: answers["ideal_durations"] in x)]
-    print(results_df.head())
+    results_df["constraint_penalty"] = 1.0 
+
+    dur_mask = results_df["ideal_durations"].apply(lambda x: answers["ideal_durations"] in x)
+    
+    if not results_df[dur_mask].empty:
+        results_df = results_df[dur_mask]
+    else:
+        results_df["constraint_penalty"] *= 0.8
+        
+    budget_mask = pd.Series(True, index=results_df.index)
 
     if answers["budget_level"] == "Budget":
-        results_df = results_df[results_df["budget_level"] == "Budget"]
+        budget_mask = results_df["budget_level"] == "Budget"
     elif answers["budget_level"] == "Mid-range":
-        results_df = results_df[results_df["budget_level"].isin(["Budget", "Mid-range"])]
+        budget_mask = results_df["budget_level"].isin(["Budget", "Mid-range"])
     elif answers["budget_level"] == "Luxury":
-        results_df = results_df[results_df["budget_level"].isin(["Mid-range", "Luxury"])]
-    print(results_df.head())
+        budget_mask = results_df["budget_level"].isin(["Mid-range", "Luxury"])
+    
+    if not results_df[budget_mask].empty:
+        results_df = results_df[budget_mask]
+    else:
+        results_df["constraint_penalty"] *= 0.7
 
     month = answers["month"]
-    results_df["avg_temp"] = results_df.apply(
-        lambda r: get_avg_temp_month(r, month), axis=1
-    )
+    results_df["avg_temp"] = results_df.apply(lambda r: get_avg_temp_month(r, month), axis=1)
+    
+    temp_mapping_celsius = {0: -5, 1: 5, 2: 15, 3: 25, 4: 30}
+    target_temp = temp_mapping_celsius.get(answers["avg_temp_monthly"], 20)
+    
+    results_df["temp_diff"] = abs(results_df["avg_temp"] - target_temp)
+    
+    temp_mask = results_df["temp_diff"] <= 10 
+    
+    if not results_df[temp_mask].empty:
+        results_df = results_df[temp_mask]
 
-    num_bins = min(5, len(results_df))
-
-    results_df["temp_category"] = pd.qcut(
-        results_df["avg_temp"],
-        q=num_bins,
-        labels=list(range(1, num_bins + 1))
-    )
-
-    preferred_weather = answers["avg_temp_monthly"]  
-
-    preferred_weather = max(1, min(preferred_weather, num_bins))
-
-    temp_df = results_df[results_df["temp_category"].astype(int) == preferred_weather]
-
-    if temp_df.empty:
-        for shift in [1, -1, 2, -2]:
-            candidate = preferred_weather + shift
-            if 1 <= candidate <= num_bins:
-                temp_df = results_df[results_df["temp_category"].astype(int) == candidate]
-                if not temp_df.empty:
-                    break
-
-    if temp_df.empty:
-        temp_df = results_df.copy()
-
-    results_df = temp_df.copy()
+        results_df["constraint_penalty"] *= (1 - (results_df["temp_diff"] * 0.01))
+    else:
+        results_df["constraint_penalty"] *= 0.7
 
     rating_cols = [col.lower() for col in RATING_COLUMNS]
     user_vector = np.array([answers[col] for col in rating_cols], dtype=float)
 
-    weights = user_vector**2 / (user_vector**2).sum() 
+    if user_vector.sum() == 0:
+        weights = np.ones(len(user_vector))
+    else:
+        weights = user_vector ** 2
+
+    max_diffs = np.maximum(abs(user_vector - 1), abs(user_vector - 5))
+    max_possible_dist = np.sqrt(np.sum(weights * (max_diffs ** 2)))
     
-    def compute_weighted_similarity(row):
+    def compute_weighted_euclidean_score(row):
         city_vector = row[rating_cols].astype(float).values
-        weighted_city = city_vector * weights
-        weighted_user = user_vector * weights
-        return np.dot(weighted_city, weighted_user) / (
-            np.linalg.norm(weighted_city) * np.linalg.norm(weighted_user))
+        sq_diff = (city_vector - user_vector) ** 2
+        weighted_sq_diff = sq_diff * weights
+        actual_dist = np.sqrt(np.sum(weighted_sq_diff))
 
-    results_df["similarity"] = results_df.apply(compute_weighted_similarity, axis=1)
-    results_df["similarity"] = results_df["similarity"] * 100  # scale to 0–100%
-    results_df["similarity"] = results_df["similarity"].round(2).map("{:.1f}%".format)
+        score = 1 - (actual_dist / (max_possible_dist + 1e-6))
+        return score
 
-    top_cities = results_df.sort_values(by="similarity", ascending=False).head(5)
+    results_df["content_score"] = results_df.apply(compute_weighted_euclidean_score, axis=1)
+    results_df["final_score"] = results_df["content_score"] * results_df["constraint_penalty"]
     
-    return top_cities
+    results_df["similarity"] = (results_df["final_score"] * 100).clip(0, 100)
+    results_df["similarity"] = results_df["similarity"].round(1).map("{:.1f}%".format)
+
+    top_cities = results_df.sort_values(by="final_score", ascending=False).head(5)
+
+    return top_cities.drop(
+        columns=["constraint_penalty", "temp_diff", "content_score", "final_score"], 
+        errors='ignore'
+    )

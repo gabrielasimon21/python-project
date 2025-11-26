@@ -4,20 +4,25 @@ from src.variables import RATING_COLUMNS
 import numpy as np
 
 
-#MAYBE CHANGE THE DISTANCE METRIC TO THE ONE USED IN THE QUIZ (EUCLIDEAN)
+#TODO: change distance calculation for euclidean distance
+# reason: euclidean distance punishes larger deviations
 
 
 def recommend_similar_cities(df, city_choice):
     # Compute similarity: find cities with similar ratings
     data = df.copy()
     rating_columns_lower = [col.lower() for col in RATING_COLUMNS]
-    city_vector = data[data["city"] == city_choice][rating_columns_lower].iloc[0]
-    # Compute Manhattan distance (sum of absolute differences)
-    data["distance"] = data[rating_columns_lower].apply(lambda row: np.abs(row - city_vector).sum(), axis=1)
     
-    # Convert distance to similarity percentage
-    max_distance = len(rating_columns_lower) * 4  # max possible distance if ratings are from 1 to 5
-    data["similarity"] = (1 - data["distance"] / max_distance) * 100  # scale to 0–100%
+    target_vector = data.loc[data["city"] == city_choice, rating_columns_lower].values[0].astype(float)
+   
+    features = data[rating_columns_lower].astype(float).values
+
+    distances = np.sqrt(np.sum((features - target_vector) ** 2, axis=1))
+    data["distance"] = distances
+
+    max_dist = np.sqrt(len(rating_columns_lower) * (4 ** 2))
+
+    data["similarity"] = (1 - (data["distance"] / max_dist)) * 100
 
     recs = (
         data.loc[data["city"] != city_choice, ["city", "country", "similarity"]]
@@ -25,7 +30,9 @@ def recommend_similar_cities(df, city_choice):
         .head(5)
         .reset_index(drop=True)
     )
-    recs["similarity"] = recs["similarity"].round(2).map("{:.1f}%".format)
+    
+    recs["similarity"] = recs["similarity"].clip(0, 100).apply(lambda x: f"{x:.1f}%")
+    
     return recs
     
     
