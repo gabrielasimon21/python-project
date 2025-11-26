@@ -1,5 +1,4 @@
 import plotly.express as px
-#import pycountry
 import pandas as pd
 
 def rating_category_plot(df, category, region_selection):
@@ -17,12 +16,16 @@ def rating_category_plot(df, category, region_selection):
         projection="natural earth",
     )
 
-    fig.update_layout(geo_scope=region_selection)
-    
+    fig.update_layout(
+        geo_scope=region_selection,
+        margin={"r":0,"t":0,"l":0,"b":0},
+        geo=dict(showland=True, landcolor="rgb(243, 243, 243)")
+    )
+
     return fig
 
 def ratings_city_plot(df, rating_columns, city_choice):
-    # Plot of the ratings for the city selected by the user
+    # Bar chart of the ratings for the city selected by the user
     city_row = df[df["city"] == city_choice].iloc[0]
     
     ratings = city_row[rating_columns].astype(float) 
@@ -53,3 +56,31 @@ def ratings_city_plot(df, rating_columns, city_choice):
     return fig
 
     
+def results_plot(df_results):
+    # Map plot of the top recommended cities
+    plot_df = df_results.copy()
+
+    if plot_df["similarity"].dtype == object:
+        plot_df["similarity_score"] = plot_df["similarity"].str.rstrip('%').astype(float)
+    else:
+        plot_df["similarity_score"] = plot_df["similarity"]
+
+    fig = px.scatter_geo(
+        plot_df,
+        lat="latitude",
+        lon="longitude",
+        hover_name="city",
+        text="city", 
+        size="similarity_score", 
+        color="similarity_score", 
+        color_continuous_scale="RdYlGn",
+        projection="natural earth",
+    )
+
+    fig.update_layout(
+        geo_scope="world",
+        margin={"r":0,"t":0,"l":0,"b":0},
+        geo=dict(showland=True, landcolor="rgb(243, 243, 243)")
+    )
+    
+    return fig
