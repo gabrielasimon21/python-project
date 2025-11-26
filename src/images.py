@@ -23,7 +23,7 @@ city_images = {
     "955899e4-7ccb-4b6a-a85c-a9b73efe6876": "https://cdn.pixabay.com/photo/2021/08/21/14/50/bruges-6562999_1280.jpg",  # Bruges - number
     "57239ab4-5376-4b81-a35e-fc8a27fb5812": "https://cdn.pixabay.com/photo/2018/12/31/12/22/iceland-3905006_1280.jpg",  # Reykjavik - number
     "6d8f232e-d34d-4dac-95c4-e01d7983124c": "https://cdn.pixabay.com/photo/2022/08/05/05/59/seoul-7366037_1280.jpg",  # Seoul - number
-    "86f34228-6edb-4171-ba62-79fffa9e06f6": "https://cdn.pixabay.com/photo/2012/12/17/22/18/ankara-70528_1280.jpg",  # Ankara - number
+    "86f34228-6edb-4171-ba62-79fffa9e06f6": "https://cdn.pixabay.com/photo/2017/09/28/02/13/ataturk-2794134_1280.jpg",  # Ankara - number
     "fa445d6d-7fb4-4832-ba37-08ff468a1430": "https://cdn.pixabay.com/photo/2017/06/25/09/09/autumn-leaves-hunting-2440083_1280.jpg",  # Kyoto - number
     "1fd503e7-d209-40c1-abd0-299af9c7d4de": "https://cdn.pixabay.com/photo/2020/02/04/02/59/tampa-4817194_1280.jpg",  # Tampa - number
     "39e15d15-ec4c-4ba9-9cd5-6775945aad8f": "https://cdn.pixabay.com/photo/2014/06/23/18/37/dublin-375419_1280.jpg",  # Dublin - number
@@ -178,7 +178,6 @@ city_images = {
     'e90eff18-779e-4ad9-8f75-944a034c0600': 'https://cdn.pixabay.com/photo/2016/10/22/00/04/bangkok-1759467_1280.jpg', # Bangkok - number
     '5eb2414d-ccc4-4665-b86a-f463c43a9c1b': 'https://cdn.pixabay.com/photo/2015/09/23/09/55/belfast-953301_1280.jpg', # Belfast - number
     'd9f5aa87-6ce6-4675-b55c-e64635035d90': 'https://cdn.pixabay.com/photo/2017/09/07/20/25/odessa-2726570_1280.jpg', # Odessa - number
-    '2ad8ee24-69aa-4e79-8b48-b459779c5987': 'https://cdn.pixabay.com/photo/2020/05/05/23/08/africa-5135407_1280.jpg', # Zanzibar Town - number
     '3b81e08f-9410-4898-9781-432030bad762': 'https://cdn.pixabay.com/photo/2021/06/21/12/42/church-6353551_1280.jpg', # Antananarivo - number
     'f64d6a04-bf5b-49e9-860f-665d6e7d6ada': 'https://cdn.pixabay.com/photo/2017/09/25/16/36/phi-phi-islands-2785743_1280.jpg', # Krabi - number
     'd76e7f44-80ab-4a92-918c-80c918d1ae88': 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Lome_Beach_Togo_1.jpg/640px-Lome_Beach_Togo_1.jpg', # Lomé - number
@@ -433,7 +432,7 @@ city_images = {
     '3c3ca961-011a-4144-8dff-741dd64d363e': 'https://cdn.pixabay.com/photo/2017/01/02/18/59/accra-1947674_1280.jpg', # Accra - number
     'bfb367bf-51e6-4098-89b3-4868a8b7c834': 'https://cdn.pixabay.com/photo/2015/03/17/00/12/beach-bourda-677016_1280.jpg', # Cayenne - number
     '90ca1550-325d-4036-ae5a-5a2d7518d12a': 'https://images.unsplash.com/photo-1631788338345-884ab9ad3ac7?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', # Launceston - number
-    '7c9a3427-bce5-49c4-ace2-b19967022373': 'https://cdn.pixabay.com/photo/2019/12/13/10/29/chile-4692666_1280.jpg', # Valparaíso - number
+    '7c9a3427-bce5-49c4-ace2-b19967022373': 'https://cdn.pixabay.com/photo/2020/03/30/21/16/chile-4985455_1280.jpg', # Valparaíso - number
     '265ee9f4-2324-46bc-95e2-11a7b655e833': 'https://cdn.pixabay.com/photo/2019/09/05/11/20/colmar-4453802_1280.jpg', # Colmar - number
     '1e1b5cd7-966e-419c-a2d4-c9fe088a9289': 'https://cdn.pixabay.com/photo/2018/08/30/04/28/bratislava-3641287_1280.jpg', # Bratislava - number
     '1d32dfff-864b-4298-8be7-1f9714936244': 'https://cdn.pixabay.com/photo/2020/12/17/00/43/skyscrapers-5838029_1280.jpg', # Hong Kong - number
@@ -479,7 +478,7 @@ city_images = {
     'cfa715d4-a4bc-4098-a4a0-4f1908b7d31e': 'https://cdn.pixabay.com/photo/2022/11/05/16/02/antalya-7572191_1280.jpg', # Antalya - number
     '12e3b524-020c-47b5-a2ca-cc91986cc068': 'https://cdn.pixabay.com/photo/2021/11/05/19/01/cappadocia-6771879_1280.jpg', # Cappadocia - number
     'f12ed1eb-9cc3-4130-857d-d0b44a884a24': 'https://cdn.pixabay.com/photo/2018/11/08/21/51/tunis-3803390_1280.jpg', # Sidi Bou Said - number
-    '5901959f-3547-4310-a352-26b7bdc5c648': 'https://cdn.pixabay.com/photo/2015/04/10/15/18/iran-716331_1280.jpg', # Tehran - number
+    '5901959f-3547-4310-a352-26b7bdc5c648': 'https://cdn.pixabay.com/photo/2021/06/21/08/07/arch-6352936_1280.jpg', # Tehran - number
     '4c39d806-80b5-4c17-8d65-d669932c6b0a': 'https://cdn.pixabay.com/photo/2020/05/07/03/32/byron-bay-5140005_1280.jpg', # Byron Bay - number
     '0ac79b0b-52e2-4a82-81f8-7037b479abd8': 'https://cdn.pixabay.com/photo/2022/11/16/16/31/ocean-7596323_1280.jpg', # Port Douglas - number
     'cfeb4496-538e-484f-9916-e9b72c6ceb5b': 'https://cdn.pixabay.com/photo/2017/12/16/22/22/bora-bora-3023437_1280.jpg', # Tahiti - number
@@ -550,5 +549,9 @@ city_images = {
     '44fb18eb-2641-46ab-b3fa-df6870ba3c74': 'https://cdn.pixabay.com/photo/2022/08/03/08/11/little-boom-7362108_1280.jpg', # Gothenburg - number
     '8c8c7203-2a45-44ba-9fb2-b5158104375e': 'https://cdn.pixabay.com/photo/2017/08/02/22/22/england-2573702_1280.jpg', # city - number
     'ba72b976-10f9-4415-a818-32cf17d8e649': 'https://cdn.pixabay.com/photo/2024/01/16/21/25/copenhagen-8513129_1280.jpg', # Copenhagen - number
+    'f47ac10b-58cc-4372-a567-0e02b2c3d479': 'https://cdn.pixabay.com/photo/2021/06/04/21/00/cityscape-6310985_1280.jpg', # Porto Alegre
+    '8f4b2a91-7d3e-4c12-9a5b-6f8e2d1c3a4b': 'https://cdn.pixabay.com/photo/2017/07/15/13/39/china-2506476_1280.jpg', #Xi'an
+    '9c4a2b1d-8e5f-47a1-b3c2-d9e0f6a8b5c4': 'https://images.unsplash.com/photo-1657137688919-8972a88fbb47?q=80&w=2334&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', # Alessandria
+    'b4f2a9e1-3d7c-48a1-b6e5-9f2d1c8a5b3d': 'https://cdn.pixabay.com/photo/2019/10/06/16/02/landscape-4530628_1280.jpg', # Ufa
 }
 
