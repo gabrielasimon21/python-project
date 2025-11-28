@@ -114,6 +114,7 @@ if st.session_state.page == "Home":
             <li><b>📍 City Recommender:</b> Select a city to get recommendations for similar cities.</li>
             <li><b>🗺️ Find your ideal destination:</b> Take the quiz to discover your perfect travel spot.</li>
             <li><b>❤️ Liked Cities:</b> Keep track of the cities you liked during your exploration.</li>
+            <li><b>🌄 City Gallery:</b> Browse through all the possible destinations to see marvelous sights.</li>
         </ul>
     </div>
     """, unsafe_allow_html=True)
