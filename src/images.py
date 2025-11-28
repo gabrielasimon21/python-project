@@ -1,3 +1,7 @@
+'''
+Dictionary of image URLs for each ID on the dataset
+'''
+
 city_images = {
     "c54acf38-3029-496b-8c7a-8343ad82785c": "https://cdn.pixabay.com/photo/2018/10/10/23/29/dome-3738653_1280.jpg",  # Milan - 2
     "0bd12654-ed64-424e-a044-7bc574bcf078": "https://cdn.pixabay.com/photo/2017/01/20/00/30/maldives-1993704_1280.jpg",  # Yasawa Islands - 3
@@ -16,7 +20,6 @@ city_images = {
     "9a90f31c-7073-4cdd-a6d1-6a6a1cbb4e8f": "https://cdn.pixabay.com/photo/2020/05/01/11/06/mandalay-5116508_1280.jpg",  # Bagan - number
     "46cdc57e-d4d6-49a4-819a-5b8161bbdb3e": "https://cdn.pixabay.com/photo/2017/08/24/16/01/malmo-2677337_1280.jpg",  # Malmö - number
     "5aab6f8f-70db-41a8-a1fb-e8d9026e533b": "https://cdn.pixabay.com/photo/2021/11/08/11/19/buildings-6778915_1280.jpg",  # Amsterdam - number
-    "8755d625-7efa-4e92-aed9-cb2386083a44": "https://cdn.pixabay.com/photo/2023/04/16/11/27/bridge-7930004_1280.jpg",  # New York - number
     "79a47311-1ffb-44d1-bd87-a1a9fb190f40": "https://cdn.pixabay.com/photo/2014/12/15/17/43/chicago-bean-569412_1280.jpg",  # Chicago - number
     "630b0ecb-8651-476e-803d-b65f99f342a3": "https://cdn.pixabay.com/photo/2017/02/25/01/16/cityscape-2096731_1280.jpg",  # Raleigh - number
     "0d1ac2c5-e3d5-40b5-ad56-01f3d67710ab": "https://cdn.pixabay.com/photo/2017/02/17/15/02/trondheim-2074284_1280.jpg",  # Trondheim - number
@@ -28,7 +31,6 @@ city_images = {
     "1fd503e7-d209-40c1-abd0-299af9c7d4de": "https://cdn.pixabay.com/photo/2020/02/04/02/59/tampa-4817194_1280.jpg",  # Tampa - number
     "39e15d15-ec4c-4ba9-9cd5-6775945aad8f": "https://cdn.pixabay.com/photo/2014/06/23/18/37/dublin-375419_1280.jpg",  # Dublin - number
     "dd54b0e6-43e7-4be6-9eb4-5e4863f25f52": "https://cdn.pixabay.com/photo/2021/01/11/10/19/victoria-falls-5907805_1280.jpg",  # Livingstone - number
-    "09323a57-0f0c-4190-9ce5-e689efe6137d": "https://cdn.pixabay.com/photo/2020/09/03/15/55/church-5541729_1280.jpg",  # Kraków - number
     "87177e3c-1535-45af-a1e7-e65357f2c0d3": "https://cdn.pixabay.com/photo/2020/03/21/16/25/petra-4954507_1280.jpg",  # Petra - number
     "50dc5be0-a23e-4da3-aecc-f5f095c26bdb": "https://cdn.pixabay.com/photo/2024/09/08/21/26/temple-9033293_1280.jpg",  # Athens - number
     "769e57b7-a2fe-4eb9-8d39-4c7a0b940c02": "https://cdn.pixabay.com/photo/2018/11/12/14/34/maldives-3810972_1280.jpg",  # Malé - number
@@ -74,7 +76,7 @@ city_images = {
     'f139e95f-1d18-40b9-a7f0-f8d908c05e53': 'https://cdn.pixabay.com/photo/2019/04/13/09/26/landscape-4124095_1280.jpg', # Bergen - number
     '6a0bce48-86be-4f4c-9106-9308a936d565': 'https://cdn.pixabay.com/photo/2019/05/11/16/18/panama-4195986_1280.jpg', # Bocas del Toro - number
     '7c623237-bc71-4ba0-ae74-a64b0201eeba': 'https://cdn.pixabay.com/photo/2017/02/28/21/42/church-2106919_1280.jpg', # Santo Domingo - number
-    '198847d2-1823-4b9d-98dc-c9b9d22eb768': 'https://cdn.pixabay.com/photo/2021/02/05/01/49/banos-5983117_1280.jpg', # Baños - number
+    '198847d2-1823-4b9d-98dc-c9b9d22eb768': 'https://cdn.pixabay.com/photo/2019/06/18/23/36/ecuador-4283498_1280.jpg', # Baños - number
     '24446934-6d3a-4d1d-89e6-82c8337fd26c': 'https://cdn.pixabay.com/photo/2018/10/17/11/45/pyramids-3753769_1280.jpg', # Cairo - number
     '1c516349-193b-4421-9959-ad6cefe95efd': 'https://images.unsplash.com/photo-1586490038878-8d404d00d3ff?q=80&w=2148&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', # Iquitos - number
     '2ebb8f10-653a-47d5-a403-f7a441bbc0a4': 'https://cdn.pixabay.com/photo/2013/11/28/10/02/charlotte-uptown-219931_1280.jpg', # Charlotte - number
@@ -314,7 +316,6 @@ city_images = {
     '08a0957f-5a4f-40f9-aa68-c26f20c88f70': 'https://cdn.pixabay.com/photo/2019/07/27/08/12/croatia-4366181_1280.jpg', # Hvar - number
     'a87511bd-77f4-4afc-977e-730d34c1c7bd': 'https://cdn.pixabay.com/photo/2016/01/27/12/10/rostock-1164252_1280.jpg', # Rostock - number
     '643c3ffc-f74a-444b-b836-da588781da27': 'https://cdn.pixabay.com/photo/2016/08/10/12/44/zakynthos-1583127_1280.jpg', # Zakynthos - number
-    '38fa5147-236e-4462-b3b1-97b35caaf154': 'https://cdn.pixabay.com/photo/2018/12/31/12/22/iceland-3905006_1280.jpg', # Reykjavík - number
     '6dc1c044-a79c-4b5b-9a9b-dbb0f95fefae': 'https://cdn.pixabay.com/photo/2014/03/08/09/27/jodhpur-282944_1280.jpg', # Jodhpur - number
     '4c55af25-bd6c-4677-badd-6b53ec2f758d': 'https://cdn.pixabay.com/photo/2020/06/20/07/27/bandung-5319951_1280.jpg', # Bandung - number
     '98fa6e27-430b-4d3b-b347-02e8c53c7cf7': 'https://cdn.pixabay.com/photo/2020/04/06/17/02/napoi-5010416_1280.jpg', # Naples - number
@@ -370,7 +371,7 @@ city_images = {
     '16b76b63-d83f-4e9c-86e1-b39fd024f8a9': 'https://cdn.pixabay.com/photo/2017/09/01/10/08/the-nile-2703650_1280.jpg', # Aswan - number
     'a3838612-edde-4229-91ba-f6483f24e7c5': 'https://cdn.pixabay.com/photo/2017/01/04/18/28/croatia-1952705_1280.jpg', # Rijeka - number
     '766463db-8af1-4a9f-95f4-f2bb8a50db45': 'https://cdn.pixabay.com/photo/2019/02/26/03/42/cathedral-of-cuenca-4021077_1280.jpg', # Cuenca - number
-    '12aa2887-b59c-4f3d-bad6-7b57dac21879': 'https://cdn.pixabay.com/photo/2018/10/17/11/45/pyramids-3753769_1280.jpg', # Giza - number
+    '12aa2887-b59c-4f3d-bad6-7b57dac21879': 'https://cdn.pixabay.com/photo/2015/10/23/12/25/egypt-1002916_1280.jpg', # Giza - number
     '1f834fe2-c60c-4806-8880-081a9f7c9b72': 'https://cdn.pixabay.com/photo/2018/10/07/12/15/estonia-3729908_1280.jpg', # Saaremaa Island - number
     '1f31c352-d854-47e4-a556-f0458c248320': 'https://cdn.pixabay.com/photo/2018/02/26/14/22/venice-3183168_1280.jpg', # Venice - number
     '4311c598-a756-4776-ab4a-aab47d5252b7': 'https://cdn.pixabay.com/photo/2022/09/30/22/11/buildings-7490323_1280.jpg', # Rennes - number

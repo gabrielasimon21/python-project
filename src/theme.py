@@ -1,34 +1,32 @@
 import streamlit as st
 
 def local_css():
+    '''
+    Theme definitions for all pages
+    '''
     st.markdown("""
     <style>
-    /* 1. IMPORT FONT */
     @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Lato:wght@400;700&display=swap');
 
     html, body, [class*="css"], button, input, select, textarea {
         font-family: 'Lato', serif !important;
     }
 
-    /* 2. BACKGROUND & LAYOUT */
     .stApp {
         background: linear-gradient(to bottom, #fdfeffff, #c1ddffff);
     }
     
-    /* Remove top padding bloat */
     .block-container {
         padding-top: 3rem;
         padding-bottom: 5rem;
     }
 
-    /* 3. HEADERS */
     h1, h2, h3, h4 {
         font-family: 'Playfair Display', serif !important;
         font-weight: 700;
         color: #222473ff !important;
     }
     
-    /* 4. CUSTOM "CARD" CONTAINER (Use this everywhere!) */
     .content-card {
         background-color: white;
         padding: 30px;
@@ -38,9 +36,7 @@ def local_css():
         margin-bottom: 20px;
     }
 
-    /* 5. STYLE STREAMLIT WIDGETS */
     
-    /* Selectbox & Text Input focus state */
     .stSelectbox > div > div {
         border-radius: 10px;
     }
@@ -49,7 +45,6 @@ def local_css():
         box-shadow: 0 0 0 1px #222473;
     }
     
-    /* Radio Buttons - Make them look like clean lists */
     .stRadio > div {
         background-color: white;
         padding: 15px;
@@ -57,31 +52,34 @@ def local_css():
         box-shadow: 0 2px 5px rgba(0,0,0,0.03);
         border: 1px solid #eee;
     }
-
-    /* 6. BUTTON STYLING (Deep Blue Theme) */
+    
     .stButton > button {
-        background-color: #222473; /* Full Blue Background */
+        background-color: #222473;
         color: white;
-        border: none;
-        border-radius: 10px;
-        padding: 12px 25px;
+        border: 1px solid #222473; /* Thinner border */
+        border-radius: 20px;       /* More rounded (pill shape) */
+        padding: 6px 18px;         /* Smaller padding */
+        font-size: 14px;           /* Smaller text */
         font-weight: 500;
-        width: 100%;
+        width: auto;               /* Don't stretch to full width */
         transition: all 0.3s ease;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     }
     
     .stButton > button:hover {
-        background-color: #1a1c5e;
-        box-shadow: 0 4px 10px rgba(34, 36, 115, 0.3);
+        background-color: #222473;
+        color: white;
+        border-color: #222473;
         transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(34, 36, 115, 0.2);
     }
     </style>
     """, unsafe_allow_html=True)
 
 def quiz_city_card_html(row, month=None):
-    """
-    Your travel ticket style card.
-    """
+    '''
+    Theme definitions for displaying quiz results 
+    '''
     html_content = f"""
     <div class="content-card" style="border-left: 6px solid #222473; padding: 20px;">
         <div style="display: flex; justify-content: space-between; align-items: center;">
@@ -100,10 +98,9 @@ def quiz_city_card_html(row, month=None):
     return html_content
 
 def likes_city_card_html(row):
-    """
-    Card HTML for liked cities.
-    Removes the "Match %" and "Temperature" since those might change or not be relevant here.
-    """
+    '''
+    Theme definitions for displaying liked cities 
+    '''
     html_content = f"""
     <div class="content-card" style="border-left: 6px solid #FF4B4B; padding: 20px;">
     <div style="display: flex; justify-content: space-between; align-items: center;">

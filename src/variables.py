@@ -1,6 +1,6 @@
 RATING_COLUMNS = ["Culture", "Adventure", "Nature", "Beaches", "Nightlife", "Cuisine", "Wellness", "Urban", "Seclusion"]
 
-REGIONS = ["World", "Europe", "Asia", "Africa", "North America", "South America", "Oceania"]
+REGIONS = ["World", "Africa", "Asia", "Europe", "North America", "Oceania", "South America", ]
 
 VARIABLE_DESCRIPTIONS = {
     "culture": "Represents how rich and accessible the cultural experiences are in a city.",
@@ -16,9 +16,6 @@ VARIABLE_DESCRIPTIONS = {
 
 MONTHS = ["January", "February", "March", "April", "May", "June",
             "July", "August", "September", "October", "November", "December"]
-
-LIKED_CITIES = []
-
 
 QUESTIONS = {
     "region": {

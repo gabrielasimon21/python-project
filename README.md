@@ -20,7 +20,7 @@ Users can select to see all rankings or filter the amount of stars desired.
     
     * **Soft Filtering:** Instead of strictly removing cities that don't match the budget or duration (which often leads to zero results), the algorithm applies mathematical penalties to their scores. In this way, the app always returns valid recommendations, ranking the "closest matches" highest even if they aren't perfect
 
-* **Liked Cities Page:** Troughout the exploration of the app, users can like cities that spark their attention. In this page, users can see all the cities they liked, to save them.
+* **Liked Cities Page:** Throughout the exploration of the app, users can like cities that spark their attention. In this page, users can see all the cities they liked, to save them.
 
 * **City Gallery:** In this page, users can browse the images of all the cities present in the dataset. To ensure ease of navigation, the gallery is organized hierarchically by Region and Country.
 
