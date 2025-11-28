@@ -6,6 +6,8 @@
 The data used in this project consists of a dataset of travel information about cities. It contains information related to budget, ideal trip duration, and temperature in each city, as well as rankings from 1 to 5 of the main features a trip destination could have. 
 The dataset can be downloaded from Kaggle in the following url: [link to dataset](https://www.kaggle.com/datasets/furkanima/worldwide-travel-cities-ratings-and-climate/data).
 
+> **Note on Version Control:** The dataset file (`worldwide-travel-cities.csv`, ~500KB) has been intentionally included in this repository. This is required for the application to function when deployed on Streamlit Cloud, as the platform needs direct access to the source data to build the environment.
+
 ## Pages
 
 
@@ -24,6 +26,12 @@ Users can select to see all rankings or filter the amount of stars desired.
 
 * **City Gallery:** In this page, users can browse the images of all the cities present in the dataset. To ensure ease of navigation, the gallery is organized hierarchically by Region and Country.
 
+
+## Live Deployment
+
+The app is hosted on Streamlit Cloud and is publicly accessible by clicking the link. 
+
+* **URL:** [Where to Next?](https://gabrielasimon21-python-project-app-esbxyd.streamlit.app/)
 
 ## Setup Instructions
 
@@ -69,7 +77,7 @@ The app should open automatically in your browser at `http://localhost:8501`.
     * `.streamlit/`
         * `config.toml`: Global visual configurations (theme colors and fonts) for Streamlit.
     * `data/`
-        * `worldwide-travel-cities.csv`: The dataset used for analysis. Downloaded from Kaggle and stored locally. The [data](https://www.kaggle.com/datasets/furkanima/worldwide-travel-cities-ratings-and-climate/data) should be downloaded in your machine and stored in the folder `data/`.
+        * `worldwide-travel-cities.csv`: The dataset used for analysis. Downloaded from Kaggle and stored locally. To run locally, the [data](https://www.kaggle.com/datasets/furkanima/worldwide-travel-cities-ratings-and-climate/data) should be downloaded in your machine and stored in the folder `data/`.
     * `src/`
         * `__init__.py`: Makes the `src/` directory a Python package.
         * `data_utils.py`: Functions for loading and cleaning the CSV data using caching.

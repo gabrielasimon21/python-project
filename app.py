@@ -83,7 +83,7 @@ footer {
 </style>
 
 <div class="footer">
-    |  Made with ❤️ by <b>Gabriela Simon</b>  
+    |  Made with ❤️ by <b>Gabriela Simon de Cenco</b>  
 </div>
 """, unsafe_allow_html=True)
 
