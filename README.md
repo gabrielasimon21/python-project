@@ -1,4 +1,4 @@
-# Where to next? - Travel Recommender App
+# 🗺️ Where to next? - Travel Recommender App
 **Where to Next?** is an interactive Streamlit application designed to help travelers discover their next ideal destination. By combining data visualization with content-based filtering, the app provides personalized city recommendations based on user preferences for weather, budget, and activities.
 
 ## Data Source
