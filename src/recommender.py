@@ -6,6 +6,14 @@ def recommend_similar_cities(df, city_choice):
     """
     Calculates the 5 most similar cities to the selected city based on 
     Euclidean distance of their feature ratings.
+    
+    Args:
+        df (pd.DataFrame): The dataframe containing city data.
+        city_choice (str): The name of the target city to find similarities for.
+
+    Returns:
+        pd.DataFrame: A dataframe containing the top 5 similar cities and their similarity percentages.
+        Returns an empty DataFrame if the city is not found.
     """
     if city_choice not in df["city"].values:
         return pd.DataFrame()

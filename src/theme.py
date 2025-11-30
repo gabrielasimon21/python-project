@@ -79,6 +79,13 @@ def local_css():
 def quiz_city_card_html(row, month=None):
     '''
     Theme definitions for displaying quiz results 
+    
+    Args:
+        row (pd.Series): A row from the dataframe containing city details.
+        month (str, optional): The name of the selected month to display temperature for. Defaults to None.
+
+    Returns:
+        str: A string containing the formatted HTML/CSS for the card.
     '''
     html_content = f"""
     <div class="content-card" style="border-left: 6px solid #222473; padding: 20px;">
@@ -100,6 +107,12 @@ def quiz_city_card_html(row, month=None):
 def likes_city_card_html(row):
     '''
     Theme definitions for displaying liked cities 
+    
+    Args:
+        row (dict): A dictionary containing city details (id, city, country, description).
+
+    Returns:
+        str: A string containing the formatted HTML/CSS for the card.
     '''
     html_content = f"""
     <div class="content-card" style="border-left: 6px solid #FF4B4B; padding: 20px;">

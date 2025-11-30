@@ -249,7 +249,7 @@ elif st.session_state.page == "Destination":
                     st.markdown("---")
 
                 # Map Visualization
-                st.write("### Top 5 Recommended Cities on the Map")
+                st.write("### Top Recommended Cities on the Map")
                 fig = results_plot(computed_results.head(5))
                 st.plotly_chart(fig, use_container_width=True)
                 

@@ -4,6 +4,14 @@ import pandas as pd
 def rating_category_plot(df, category, region_selection):
     """
     Generates a bubble map showing cities colored and sized by a specific rating category.
+    
+    Args:
+        df (pd.DataFrame): The dataframe containing city data.
+        category (str): The specific column name to visualize (e.g., 'Nature', 'Nightlife').
+        region_selection (str): The specific region to focus the map on (e.g., 'europe', 'world').
+
+    Returns:
+        plotly.graph_objects.Figure: An interactive Plotly map object.
     """
     
     # Create the scatter map 
@@ -32,6 +40,14 @@ def rating_category_plot(df, category, region_selection):
 def ratings_city_plot(df, rating_columns, city_choice):
     """
     Creates a bar chart visualizing how the city selectes by the user ranks across all categories.
+    
+    Args:
+        df (pd.DataFrame): The dataframe containing city data.
+        rating_columns (list): A list of column names representing the rating categories.
+        city_choice (str): The name of the city selected by the user.
+
+    Returns:
+        plotly.graph_objects.Figure: An interactive Plotly bar chart object.
     """
     # Extract the specific row for the selected city
     city_row = df[df["city"] == city_choice].iloc[0]
@@ -70,6 +86,12 @@ def ratings_city_plot(df, rating_columns, city_choice):
 def results_plot(df_results):
     """
     Map plot of the top recommended cities
+    
+    Args:
+        df_results (pd.DataFrame): A dataframe containing only the top recommended cities and their similarity scores.
+
+    Returns:
+        plotly.graph_objects.Figure: An interactive Plotly map object showing the recommended cities.
     """
     plot_df = df_results.copy()
 

@@ -7,6 +7,13 @@ def get_avg_temp_month(row, month):
     """
     Parses the JSON string in the dataset to retrieve the average 
     temperature for a specific month.
+    
+    Args:
+        row (pd.Series): A row from the dataframe containing the 'avg_temp_monthly' JSON string.
+        month (int): The month number (1-12) to retrieve the temperature for.
+
+    Returns:
+        float: The average temperature in Celsius for that month.
     """
     temp_dict = json.loads(row["avg_temp_monthly"])
     return temp_dict[str(month)]["avg"]
@@ -16,6 +23,13 @@ def compute_result(answers, df):
     Calculates city recommendations based on user quiz answers.
     Uses a hybrid approach: Hard filtering for Region, Soft filtering (penalties)
     for constraints, and Weighted Euclidean Distance for preferences.
+    
+    Args:
+        answers (dict): A dictionary mapping question keys (e.g., 'budget_level') to user responses.
+        df (pd.DataFrame): The main dataframe containing city data.
+
+    Returns:
+        pd.DataFrame: A dataframe of the top 5 recommended cities with their similarity scores.
     """
     # -- 1. Hard Filter: Region --
     # Strictly enforce region selection. If 0 ('Anywhere'), keep all.
